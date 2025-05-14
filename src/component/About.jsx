@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
-// import Image from 'next/image';
 import { Play, ChevronRight, ChevronLeft } from "lucide-react"
+import Cheerful from './../assets/Image/cheerful-business-colleagues-checking-documents.jpg'
+import Young from './../assets/Image/young-couple-works-office.jpg'
+import Screen from './../assets/Image/Screenshot 2025-05-14 111015.png'
 
 export default function AboutUs() {
   return (
@@ -15,16 +17,16 @@ export default function AboutUs() {
         </div>
 
         <nav className="hidden md:flex items-center gap-8">
-          <Link href="#" className="text-gray-600 hover:text-indigo-600 text-sm">
+          <Link href="/" className="text-gray-600 hover:text-indigo-600 text-sm">
             Home
           </Link>
-          <Link href="#" className="text-indigo-600 font-medium text-sm">
+          <Link href="/about" className="text-indigo-600 font-medium text-sm">
             About Us
           </Link>
-          <Link href="#" className="text-gray-600 hover:text-indigo-600 text-sm">
+          <Link href="/news" className="text-gray-600 hover:text-indigo-600 text-sm">
             News & Media
           </Link>
-          <Link href="#" className="text-gray-600 hover:text-indigo-600 text-sm">
+          <Link href="/career" className="text-gray-600 hover:text-indigo-600 text-sm">
             Our Services
           </Link>
           <Link href="#" className="text-gray-600 hover:text-indigo-600 text-sm">
@@ -63,6 +65,9 @@ export default function AboutUs() {
                   height={400}
                   className="w-full h-full object-cover"
                 /> */}
+                <img src={Cheerful} alt="Team members collaborating" width={500}
+                  height={400}
+                  className="w-full h-full object-cover" />
               </div>
 
               {/* Right image with decorative elements */}
@@ -79,7 +84,10 @@ export default function AboutUs() {
                     width={500}
                     height={400}
                     className="w-full h-full object-cover"
-                  /> */}
+                    /> */}
+                    <img src={Young} alt="Professional woman in meeting"   width={500}
+                    height={400}
+                    className="w-full h-full object-cover"/>
                 </div>
               </div>
             </div>
@@ -114,6 +122,9 @@ export default function AboutUs() {
                 height={400}
                 className="w-full h-full object-contain"
               /> */}
+              <img src={Screen} alt="Financial illustration"  width={350}
+                height={400}
+                className="w-full h-full object-contain"/>
 
               {/* Decorative elements */}
               <div className="absolute -right-4 bottom-0 w-20 h-20 bg-indigo-100 rounded-full"></div>

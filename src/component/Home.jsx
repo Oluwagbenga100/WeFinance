@@ -71,16 +71,16 @@ const Dashboard = () => {
         </div>
 
         <div className="hidden md:flex items-center gap-8">
-          <a href="#" className="text-white font-medium border-b-2 border-white">
+          <a href="/" className="text-white font-medium border-b-2 border-white">
             Home
           </a>
-          <a href="#" className="text-white/80 hover:text-white transition-colors">
+          <a href="/About" className="text-white/80 hover:text-white transition-colors">
             About Us
           </a>
-          <a href="#" className="text-white/80 hover:text-white transition-colors">
+          <a href="/Career  " className="text-white/80 hover:text-white transition-colors">
             How it Works
           </a>
-          <a href="#" className="text-white/80 hover:text-white transition-colors">
+          <a href="/Career" className="text-white/80 hover:text-white transition-colors">
             Our Services
           </a>
           <button className="text-white/80 hover:text-white transition-colors flex items-center gap-1">
@@ -118,7 +118,12 @@ const Dashboard = () => {
               {/* This would be replaced with your actual image */}
               <div className="absolute inset-0 flex items-center justify-center">
                 {/* <div className="w-64 h-64 bg-[#14144B]/30 rounded-full"></div> */}
+          {/* <div data-aos="fade-down-left"></div> */}
+          <div data-aos="flip-left"
+     data-aos-easing="ease-out-cubic"
+     data-aos-duration="2000">
                 <img src={Financial} alt="" />
+                </div>
               </div>
 
               {/* Decorative Elements */}
@@ -202,14 +207,20 @@ const Dashboard = () => {
           <h2 className="text-[#0b1030] text-4xl md:text-5xl font-bold">What We Offer</h2>
         </div>
 
+        <div data-aos="flip-left"></div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto mt-12 px-4">
       {features.map((feature, idx) => (
         <div
           key={idx}
           className={`relative p-8 rounded-xl overflow-hidden ${feature.bg}`}
         >
+          <div data-aos="flip-left"
+     data-aos-easing="ease-out-cubic"
+     data-aos-duration="2000">
+
           <div className="flex justify-center mb-4">
             {feature.icon}
+          </div>
           </div>
           <p className="text-sm font-medium text-center mb-2  ">{feature.number}</p>
           <h3 className="text-xl font-semibold text-center mb-2">{feature.title}</h3>
@@ -353,6 +364,10 @@ const Dashboard = () => {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {/* Blog Post 1 */}
+          <div data-aos="fade-down"
+     data-aos-easing="linear"
+     data-aos-duration="1500">
+
           <div className="bg-white rounded-3xl overflow-hidden shadow-lg">
             <div className="aspect-[4/3] relative">
              
@@ -369,8 +384,12 @@ const Dashboard = () => {
               </button>
             </div>
           </div>
+          </div>
 
           {/* Blog Post 2 */}
+          <div data-aos="fade-up"
+     data-aos-duration="1500">
+
           <div className="bg-white rounded-3xl overflow-hidden shadow-lg">
             <div className="aspect-[4/3] relative">
               <img src= {Group1}  alt="Email marketing team" width={600} height={500} className="object-cover w-full h-full" />
@@ -386,8 +405,14 @@ const Dashboard = () => {
               </button>
             </div>
           </div>
+          </div>
 
           {/* Blog Post 3 */}
+          <div data-aos="fade-right"
+    //  data-aos-offset="300"
+    data-aos-duration="1500"
+     data-aos-easing="ease-in-sine">
+
           <div className="bg-white rounded-3xl overflow-hidden shadow-lg">
             <div className="aspect-[4/3] relative">
             
@@ -404,6 +429,7 @@ const Dashboard = () => {
               </button>
             </div>
           </div>
+        </div>
         </div>
       </section>
 
@@ -471,6 +497,11 @@ const Dashboard = () => {
 
         <div className="grid md:grid-cols-3 gap-8">
           {/* Service Card 1 */}
+          <div data-aos="fade-left"
+     data-aos-anchor="#example-anchor"
+     data-aos-offset="500"
+     data-aos-duration="1500">
+
           <div className="rounded-2xl overflow-hidden bg-white shadow-lg">
             <div className="p-12 flex flex-col items-center justify-center">
               <div className="mb-8">
@@ -485,6 +516,7 @@ const Dashboard = () => {
               </div>
             </div>
             <div className="h-24 bg-[#e6e6ff] rounded-tl-[100px]"></div>
+          </div>
           </div>
 
           {/* Service Card 2 */}
@@ -575,12 +607,12 @@ const Dashboard = () => {
             <div>
               <ul className="space-y-4">
                 <li>
-                  <a href="#" className="text-gray-700 hover:text-[#3431de] transition-colors">
+                  <a href="/" className="text-gray-700 hover:text-[#3431de] transition-colors">
                     Home
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="text-gray-700 hover:text-[#3431de] transition-colors">
+                  <a href="/about" className="text-gray-700 hover:text-[#3431de] transition-colors">
                     About Us
                   </a>
                 </li>

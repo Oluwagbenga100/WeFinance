@@ -81,16 +81,16 @@ export default function NewsPage() {
         </div>
 
         <nav className="hidden md:flex items-center gap-8">
-          <Link href="#" className="text-gray-600 hover:text-indigo-600 text-sm">
+          <Link href="/" className="text-gray-600 hover:text-indigo-600 text-sm">
             Home
           </Link>
-          <Link href="#" className="text-gray-600 hover:text-indigo-600 text-sm">
+          <Link href="/about" className="text-gray-600 hover:text-indigo-600 text-sm">
             About Us
           </Link>
-          <Link href="#" className="text-indigo-600 font-medium text-sm">
+          <Link href="/news" className="text-indigo-600 font-medium text-sm">
             News & Media
           </Link>
-          <Link href="#" className="text-gray-600 hover:text-indigo-600 text-sm">
+          <Link href="/career" className="text-gray-600 hover:text-indigo-600 text-sm">
             Our Services
           </Link>
           <Link href="#" className="text-gray-600 hover:text-indigo-600 text-sm flex items-center">

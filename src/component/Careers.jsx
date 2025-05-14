@@ -19,16 +19,16 @@ export default function CareersPage() {
           </div>
 
           <nav className="hidden md:flex items-center gap-8">
-            <a href="#" className="text-gray-700 hover:text-indigo-600 text-sm">
+            <a href="/" className="text-gray-700 hover:text-indigo-600 text-sm">
               Home
             </a>
-            <a href="#" className="text-gray-700 hover:text-indigo-600 text-sm">
+            <a href="/about" className="text-gray-700 hover:text-indigo-600 text-sm">
               About Us
             </a>
-            <a href="#" className="text-gray-700 hover:text-indigo-600 text-sm">
+            <a href="/career" className="text-gray-700 hover:text-indigo-600 text-sm">
               Our Services
             </a>
-            <a href="#" className="text-gray-700 hover:text-indigo-600 text-sm">
+            <a href="/news" className="text-gray-700 hover:text-indigo-600 text-sm">
               Our Team
             </a>
             <a href="#" className="text-gray-700 hover:text-indigo-600 text-sm">
