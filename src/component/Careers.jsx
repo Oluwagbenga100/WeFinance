@@ -3,7 +3,10 @@ import Logo from './../assets/Image/Group.png'
 import Make from './../assets/Image/Mask Group.png'
 import Group from './../assets/Image/Mask Group (1).png'
 import Group2  from './../assets/Image/Mask Group (2).png'
-import Young from './../assets/Image/young-couple-works-office.jpg'
+import Young from './../assets/Image/1.png'
+import Young1 from './../assets/Image/2.png'
+import World from './../assets/Image/Screenshot 2025-05-14 111015.png'
+import Great from './../assets/Image/Screenshot 2025-05-15 162211 .png'
 
 export default function CareersPage() {
   return (
@@ -64,7 +67,7 @@ export default function CareersPage() {
 
           <div className="grid md:grid-cols-2 gap-4 relative">
             {/* Left image */}
-            <div className="relative h-68 md: rounded-3xl overflow-hidden bg-gray-200">
+            <div className="relative h-68 ">
             <img src={Young} alt="" className=""/>
               {/* <div className="absolute inset-0 flex items-center justify-center text-gray-400"></div> */}
             </div>
@@ -72,12 +75,13 @@ export default function CareersPage() {
             {/* Right image with decorative elements */}
             <div className="relative h-64 md:h-80">
               {/* Purple decorative elements */}
-              <div className="absolute left-0 top-1/4 w-6 h-16 bg-indigo-600 rounded-r-full"></div>
-              <div className="absolute right-1/4 bottom-0 w-16 h-6 bg-indigo-100 rounded-t-full"></div>
+              {/* <div className="absolute left-0 top-1/4 w-6 h-16 bg-indigo-600 rounded-r-full"></div>
+              <div className="absolute right-1/4 bottom-0 w-16 h-6 bg-indigo-100 rounded-t-full"></div> */}
 
               {/* Main image */}
-              <div className="absolute inset-0 rounded-3xl overflow-hidden bg-gray-200">
-                <div className="absolute inset-0 flex items-center justify-center text-gray-400">Image Placeholder</div>
+              <div className="absolute ">
+              <img src={Young1} alt="" className=""/>
+                {/* <div className="absolute inset-0 flex items-center justify-center text-gray-400">Image Placeholder</div> */}
               </div>
             </div>
           </div>
@@ -167,8 +171,8 @@ export default function CareersPage() {
             </div>
           </div>
 
-          <div className="relative h-80 bg-gray-200 rounded-lg flex items-center justify-center text-gray-400">
-            Image Placeholder
+          <div className="relative h-80 rounded-lg flex items-center justify-center text-gray-400">
+            <img src={World} alt="" className="w-200 h-100"/>
           </div>
         </div>
       </section>
@@ -250,7 +254,7 @@ export default function CareersPage() {
       </section>
 
       {/* Benefits Section */}
-      <section className="bg-indigo-600 py-16 mt-16">
+      <section className="bg-[#2f29d9] py-16 mt-16">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="text-white">
@@ -283,8 +287,8 @@ export default function CareersPage() {
               <button className="bg-white text-indigo-600 px-6 py-3 rounded-md font-medium">Learn More</button>
             </div>
 
-            <div className="relative h-96 rounded-3xl overflow-hidden bg-indigo-500 flex items-center justify-center text-white/50">
-              Image Placeholder
+            <div className="relative h-100 rounded-3xl overflow-hidden flex items-center justify-center ">
+              <img src={Great} alt="" />
             </div>
           </div>
         </div>

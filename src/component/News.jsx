@@ -1,6 +1,11 @@
 import { useState } from "react"
 import { Link } from 'react-router-dom';
 import { ChevronRight, ChevronLeft } from "lucide-react"
+import Professional from './../assets/Image/Screenshot 2025-05-15 162305.png'
+import Professional1 from './../assets/Image/4.png'
+import Professional2 from './../assets/Image/3.png'
+import Young from './../assets/Image/1.png'
+import Young1 from './../assets/Image/2.png'
 
 // News article data
 const newsArticles = [
@@ -102,56 +107,34 @@ export default function NewsPage() {
       </header>
 
       {/* Hero Section */}
-      <section className="py-16 px-6 md:px-16 lg:px-24">
-        <div className="max-w-6xl mx-auto">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">News</h1>
+          <section className="container ">
+        <div className="text-center max-w-3xl mx-auto mb-12">
+          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Career</h1>
           <p className="text-gray-500 max-w-2xl">
             Stay up-to-date with the latest news and insights from WeFinance. Discover our latest articles, press
             releases, and media coverage.
           </p>
 
           {/* Hero Images */}
-          <div className="mt-12 relative">
-            {/* Background pattern */}
-            <div className="absolute -left-4 top-1/4 w-20 h-20 bg-gray-100 rounded-md opacity-50"></div>
-            <div className="absolute right-1/4 bottom-0 w-32 h-32 bg-gray-100 rounded-full opacity-50"></div>
 
-            {/* Main images container */}
-            <div className="relative z-10 grid md:grid-cols-2 gap-4 md:gap-8">
-              {/* Left image */}
-              <div className="relative rounded-3xl overflow-hidden h-64 md:h-80">
-                <div className="absolute inset-0 bg-gray-200">
-                  {/* <Image
-                    src="/placeholder.svg?height=400&width=500"
-                    alt="Professional woman in meeting"
-                    width={500}
-                    height={400}
-                    className="w-full h-full object-cover"
-                  /> */}
-                </div>
-              </div>
+           <div className="grid md:grid-cols-2 gap-4 relative">
+            {/* Left image */}
+            <div className="relative h-68 ">
+            <img src={Professional1} alt="" className=""/>
+            </div>
 
-              {/* Right image with decorative elements */}
-              <div className="relative">
-                {/* Purple decorative elements */}
-                <div className="absolute left-0 top-1/4 w-6 h-16 bg-indigo-600 rounded-r-full z-10"></div>
+            {/* Right image with decorative elements */}
+            <div className="relative h-64 md:h-80">
 
-                {/* Main image */}
-                <div className="absolute right-0 top-0 w-full h-64 md:h-80 rounded-3xl overflow-hidden">
-                  <div className="absolute inset-0 bg-gray-200">
-                    {/* <Image
-                      src="/placeholder.svg?height=400&width=500"
-                      alt="Business professional in office"
-                      width={500}
-                      height={400}
-                      className="w-full h-full object-cover"
-                    /> */}
-                  </div>
-                </div>
+              {/* Main image */}
+              <div className="absolute ">
+              <img src={Professional2} alt="" className=""/>
               </div>
             </div>
           </div>
-        </div>
+            </div>
+          {/* </div> */}
+        {/* </div> */}
       </section>
 
       {/* Latest News Section */}
@@ -212,7 +195,7 @@ export default function NewsPage() {
       </section>
 
       {/* Professional Finance Section */}
-      <section className="py-16 px-6 md:px-16 lg:px-24 bg-indigo-600 text-white">
+      <section className="py-16 px-6 md:px-16 lg:px-24 bg-[#2f29d9] text-white">
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
@@ -235,51 +218,9 @@ export default function NewsPage() {
 
             <div className="relative">
               {/* Team member photos */}
-              <div className="grid grid-cols-2 gap-4">
-                <div className="relative">
-                  <div className="w-40 h-40 rounded-full overflow-hidden border-4 border-white">
-                    {/* <Image
-                      src="/placeholder.svg?height=160&width=160"
-                      alt="Team member"
-                      width={160}
-                      height={160}
-                      className="w-full h-full object-cover"
-                    /> */}
-                  </div>
-                </div>
-                <div className="relative mt-12">
-                  <div className="w-40 h-40 rounded-full overflow-hidden border-4 border-white">
-                    {/* <Image
-                      src="/placeholder.svg?height=160&width=160"
-                      alt="Team member"
-                      width={160}
-                      height={160}
-                      className="w-full h-full object-cover"
-                    /> */}
-                  </div>
-                </div>
-                <div className="relative mt-8">
-                  <div className="w-40 h-40 rounded-full overflow-hidden border-4 border-white">
-                    {/* <Image
-                      src="/placeholder.svg?height=160&width=160"
-                      alt="Team member"
-                      width={160}
-                      height={160}
-                      className="w-full h-full object-cover"
-                    /> */}
-                  </div>
-                </div>
-                <div className="relative mt-20">
-                  <div className="w-40 h-40 rounded-full overflow-hidden border-4 border-white">
-                    {/* <Image
-                      src="/placeholder.svg?height=160&width=160"
-                      alt="Team member"
-                      width={160}
-                      height={160}
-                      className="w-full h-full object-cover"
-                    /> */}
-                  </div>
-                </div>
+              <div className="-full flex justify-center items-center py-10">
+                   <img src={Professional} alt="" className="w-[600px] md:w-[800px] lg:w-[1000px]"/>
+                
               </div>
             </div>
           </div>
