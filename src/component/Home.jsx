@@ -1,698 +1,335 @@
-import { ChevronDown } from "lucide-react"
-import Logo from './../assets/Image/Group.png'
-import Financial from './../assets/Image/pexels.png'
-import Make from './../assets/Image/Mask group4 (2).png'
-import Group  from './../assets/Image/Mask Group.png'
-import Group1  from './../assets/Image/Mask Group (1).png'
-import Group2  from './../assets/Image/Mask Group (2).png'
-import { Wallet, Briefcase, BarChart3,Facebook, Instagram, Twitter } from 'lucide-react'; // icons from lucide-react
+import React, { useState, useEffect } from 'react';
+import { Github, ExternalLink, Mail, Linkedin, Code, Database, Wrench, ChevronDown, Menu, X } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
-const features = [
-  {
-    icon: <Wallet className="w-12 h-12 text-indigo-600 " />,
-    title: 'Financial Report',
-    desc: 'Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.',
-    number: '#1',
-    bg: 'bg-white text-gray-800 shadow-lg shadow-indigo-500/40',
-    iconColor: 'text-indigo-600',
-  },
-  {
-    icon: <Briefcase className="w-12 h-12 text-white" />,
-    title: 'Manage Investments',
-    desc: 'Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.',
-    number: '#2',
-    bg: 'bg-indigo-600 text-white shadow-lg shadow-indigo-500/40',
-    iconColor: 'text-white',
-  },
-  {
-    icon: <BarChart3 className="w-12 h-12 text-white" />,
-    title: 'Financial Report',
-    desc: 'Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.',
-    number: '#3',
-    bg: 'bg-indigo-900 text-white shadow-lg shadow-indigo-500/40',
-    iconColor: 'text-white',
-  },
-];
+export default function Portfolio() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
 
-const stats = [
-  {
-    number: '18',
-    label: 'Years Experience',
-    rounded: 'rounded-tl-[80px] rounded-br-[0px] rounded-tr-[0px] rounded-bl-[0px]',
-  },
-  {
-    number: '240+',
-    label: 'Completed Projects',
-    rounded: 'rounded-tr-[80px] rounded-bl-[0px] rounded-tl-[0px] rounded-br-[0px]',
-  },
-  {
-    number: '9.5/10',
-    label: 'Average rating',
-    rounded: 'rounded-bl-[80px] rounded-tr-[0px] rounded-tl-[0px] rounded-br-[0px]',
-  },
-  {
-    number: '150+',
-    label: 'Served',
-    rounded: 'rounded-br-[80px] rounded-tl-[0px] rounded-tr-[0px] rounded-bl-[0px]',
-  },
-];
+  const skills = {
+    frontend: ['React', 'Vite', 'Next.js', 'Tailwind CSS', 'HTML5', 'CSS3', 'JavaScript'],
+    backend: ['Node.js', 'Express', 'MongoDB', 'REST APIs'],
+    tools: ['Git', 'GitHub', 'Figma', 'VS Code', 'Postman']
+  };
 
-const Dashboard = () => {
+  const projects = [
+    {
+      title: 'DevLink – Portfolio Builder App',
+      description: 'A fully responsive web app that allows developers to create and share stunning portfolios.',
+      stack: ['React', 'Tailwind CSS', 'Firebase'],
+      gradient: 'from-purple-500 to-pink-500'
+    },
+    {
+      title: 'TaskFlow – Productivity App',
+      description: 'A Kanban-style productivity app to manage projects and tasks.',
+      stack: ['MongoDB', 'Express', 'React', 'Node.js'],
+      gradient: 'from-blue-500 to-cyan-500'
+    },
+    {
+      title: 'CleanCommerce – E-commerce Platform',
+      description: 'A fast and clean e-commerce frontend for showcasing products.',
+      stack: ['React', 'Redux', 'Stripe API'],
+      gradient: 'from-green-500 to-teal-500'
+    }
+  ];
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ['home', 'about', 'projects', 'skills', 'contact'];
+      const scrollPosition = window.scrollY + 100;
+
+      sections.forEach(section => {
+        const element = document.getElementById(section);
+        if (element) {
+          const offsetTop = element.offsetTop;
+          const offsetBottom = offsetTop + element.offsetHeight;
+          
+          if (scrollPosition >= offsetTop && scrollPosition < offsetBottom) {
+            setActiveSection(section);
+          }
+        }
+      });
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+    setIsMenuOpen(false);
+  };
+
   return (
-    <div>
-       <div className="min-h-screen bg-[#3431de]">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
       {/* Navigation */}
-      <nav className="container mx-auto px-4 py-6 flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
-            <img src={Logo} alt="" width={40} height={40} className="w-10 h-10" />
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-black/20 backdrop-blur-md border-b border-white/10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center py-4">
+            <div className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+              David
+            </div>
+            
+            {/* Desktop Menu */}
+            <div className="hidden md:flex space-x-8">
+              {['home', 'about', 'projects', 'skills', 'contact'].map((section) => (
+                <button
+                  key={section}
+                  onClick={() => scrollToSection(section)}
+                  className={`capitalize transition-all duration-300 hover:text-purple-400 ${
+                    activeSection === section 
+                      ? 'text-purple-400 border-b-2 border-purple-400' 
+                      : 'text-white/80'
+                  }`}
+                >
+                  {section}
+                </button>
+              ))}
+            </div>
+
+            {/* Mobile Menu Button */}
+            <button
+              className="md:hidden text-white"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            >
+              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
           </div>
-          <span className="text-white text-xl font-bold">WeFinance</span>
         </div>
 
-        <div className="hidden md:flex items-center gap-8">
-          <a href="/" className="text-white font-medium border-b-2 border-white">
-            Home
-          </a>
-          <a href="/About" className="text-white/80 hover:text-white transition-colors">
-            About Us
-          </a>
-          <a href="/Career  " className="text-white/80 hover:text-white transition-colors">
-            How it Works
-          </a>
-          <a href="/Career" className="text-white/80 hover:text-white transition-colors">
-            Our Services
-          </a>
-          <button className="text-white/80 hover:text-white transition-colors flex items-center gap-1">
-            More
-            <ChevronDown className="w-4 h-4" />
-          </button>
-        </div>
-
-        <button className="px-6 py-2 text-white border-2 border-white rounded-full hover:bg-white hover:text-[#3431de] transition-colors">
-          Contact Us
-        </button>
+        {/* Mobile Menu */}
+        {isMenuOpen && (
+          <div className="md:hidden bg-black/90 backdrop-blur-md border-t border-white/10">
+            <div className="px-4 py-2 space-y-2">
+              {['home', 'about', 'projects', 'skills', 'contact'].map((section) => (
+                <button
+                  key={section}
+                  onClick={() => scrollToSection(section)}
+                  className="block w-full text-left px-3 py-2 text-white/80 hover:text-purple-400 transition-colors capitalize"
+                >
+                  {section}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
       </nav>
 
       {/* Hero Section */}
-      <main className="container mx-auto px-5 pt-20 pb-32">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div className="space-y-6">
-            <h1 className="text-white text-6xl md:text-7xl font-bold leading-tight">
-              Financial
-              <br />
-              Solutions.
+      <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
+        {/* Animated Background Elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-pink-500/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl animate-pulse delay-2000"></div>
+        </div>
+  
+        <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
+          <div className="space-y-8 animate-fade-in">
+            <div className="text-6xl sm:text-8xl mb-4">🏠</div>
+            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold text-white leading-tight">
+              Hi, I'm{' '}
+              <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent animate-pulse">
+                David
+              </span>
             </h1>
-            <p className="text-white/80 text-lg max-w-md">
-              Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the
-              blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics
+            <p className="text-xl sm:text-2xl text-white/80 font-light max-w-3xl mx-auto leading-relaxed">
+              A Web Developer crafting modern, high-performance websites & web apps
             </p>
-            <button className="px-8 py-3 bg-[#14144B] text-white rounded-md hover:bg-[#1E1E6B] transition-colors">
-              Let's Talk
-            </button>
+            <p className="text-lg text-white/60 max-w-2xl mx-auto">
+              I specialize in building responsive, scalable, and user-friendly solutions using modern tools like React, Node.js, and Tailwind CSS.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8">
+             <Link to="/view"> <button className="group bg-gradient-to-r from-purple-500 to-pink-500 text-white px-8 py-4 rounded-full font-semibold hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-purple-500/25">
+                <span className="flex items-center gap-2">
+                  🔗 View My Work
+                  <ExternalLink size={20} className="group-hover:translate-x-1 transition-transform" />
+                </span>
+              </button></Link>
+             <Link to="/contact"> <button className="group border-2 border-white/30 text-white px-8 py-4 rounded-full font-semibold hover:bg-white/10 transition-all duration-300">
+                <span className="flex items-center gap-2">
+                  📬 Contact Me
+                  <Mail size={20} className="group-hover:scale-110 transition-transform" />
+                </span>
+              </button></Link>
+            </div>
           </div>
+        </div>
 
-          <div className="relative">
-            {/* Placeholder for the main image */}
-            <div className="w-full h-[500px] relative">
-              {/* This would be replaced with your actual image */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                {/* <div className="w-64 h-64 bg-[#14144B]/30 rounded-full"></div> */}
-          {/* <div data-aos="fade-down-left"></div> */}
-          <div data-aos="flip-left"
-     data-aos-easing="ease-out-cubic"
-     data-aos-duration="2000">
-                <img src={Financial} alt="" />
+        {/* Scroll Indicator */}
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+          <ChevronDown size={32} className="text-white/50" />
+        </div>
+      </section>
+
+      {/* About Section */}
+      <section id="about" className="py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-16">
+            <div className="text-5xl mb-4">💼</div>
+            <h2 className="text-4xl font-bold text-white mb-6">About Me</h2>
+            <div className="w-20 h-1 bg-gradient-to-r from-purple-400 to-pink-400 mx-auto rounded-full"></div>
+          </div>
+          
+          <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover:border-purple-400/50 transition-all duration-500">
+            <p className="text-lg text-white/80 leading-relaxed mb-6">
+              I'm a passionate Web Developer with <span className="text-purple-400 font-semibold">[6+]</span> years of experience building digital products that solve real-world problems. From idea to deployment, I enjoy turning complex problems into elegant, intuitive designs and robust code.
+            </p>
+            
+            <div className="grid md:grid-cols-3 gap-6 mt-8">
+              <div className="text-center p-4 bg-white/5 rounded-xl hover:bg-white/10 transition-all duration-300">
+                <Code size={40} className="text-purple-400 mx-auto mb-3" />
+                <h3 className="text-white font-semibold mb-2">Frontend</h3>
+                <p className="text-white/60 text-sm">Modern, responsive interfaces</p>
+              </div>
+              <div className="text-center p-4 bg-white/5 rounded-xl hover:bg-white/10 transition-all duration-300">
+                <Database size={40} className="text-pink-400 mx-auto mb-3" />
+                <h3 className="text-white font-semibold mb-2">Backend</h3>
+                <p className="text-white/60 text-sm">Scalable server solutions</p>
+              </div>
+              <div className="text-center p-4 bg-white/5 rounded-xl hover:bg-white/10 transition-all duration-300">
+                <Wrench size={40} className="text-blue-400 mx-auto mb-3" />
+                <h3 className="text-white font-semibold mb-2">Tools</h3>
+                <p className="text-white/60 text-sm">Modern development workflow</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Projects Section */}
+      <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <div className="text-5xl mb-4">🧩</div>
+            <h2 className="text-4xl font-bold text-white mb-6">Featured Projects</h2>
+            <div className="w-20 h-1 bg-gradient-to-r from-purple-400 to-pink-400 mx-auto rounded-full"></div>
+          </div>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {projects.map((project, index) => (
+              <div key={index} className="group bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-purple-400/50 transition-all duration-500 hover:scale-105">
+                <div className={`w-full h-40 bg-gradient-to-r ${project.gradient} rounded-xl mb-6 flex items-center justify-center text-white text-2xl font-bold opacity-80 group-hover:opacity-100 transition-opacity`}>
+                  {project.title.split(' ')[0]}
+                </div>
+                
+                <h3 className="text-xl font-bold text-white mb-3 group-hover:text-purple-400 transition-colors">
+                  {project.title}
+                </h3>
+                
+                <p className="text-white/70 mb-4 leading-relaxed">
+                  {project.description}
+                </p>
+                
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {project.stack.map((tech, i) => (
+                    <span key={i} className="px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-sm border border-purple-500/30">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+                
+                <div className="flex gap-4">
+                  <button className="flex items-center gap-2 text-white/80 hover:text-purple-400 transition-colors">
+                    <ExternalLink size={16} />
+                    <span className="text-sm">Live Demo</span>
+                  </button>
+                  <button className="flex items-center gap-2 text-white/80 hover:text-pink-400 transition-colors">
+                    <Github size={16} />
+                    <span className="text-sm">GitHub</span>
+                  </button>
                 </div>
               </div>
-
-              {/* Decorative Elements */}
-              <div className="absolute top-1/4 right-1/4 animate-bounce">
-                <div className="w-8 h-8 bg-yellow-400 rotate-45"></div>
-              </div>
-
-              {/* Coin elements */}
-              <div className="absolute top-1/3 left-1/4 animate-pulse">
-                <div className="w-16 h-16 bg-white/20 rounded-full"></div>
-              </div>
-
-              <div className="absolute bottom-1/4 right-1/3 animate-pulse delay-300">
-                <div className="w-12 h-12 bg-white/20 rounded-full"></div>
-              </div>
-
-              {/* Additional decorative circles */}
-              <div className="absolute top-1/2 right-1/6 animate-pulse delay-500">
-                <div className="w-8 h-8 bg-white/20 rounded-full"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Background vertical lines */}
-        <div className="absolute inset-0 z-0 flex justify-between pointer-events-none">
-          {[...Array(8)].map((_, i) => (
-            <div key={i} className="w-px h-full bg-white/5"></div>
-          ))}
-        </div>
-      </main>
-      </div>
-      {/* Our Firm Section */}
-      <section className="container mx-auto px-5 py-24">
-        <div className="mb-8">
-          <h2 className="text-[#3431de] text-xl font-semibold">Our Firm</h2>
-        </div>
-
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div className="space-y-8">
-            <h3 className="text-[#0F172A] text-4xl md:text-5xl font-bold leading-tight">
-              We are Agile. Constantly Focused on Growth and Being Better
-            </h3>
-
-            <div className="space-y-6 text-gray-500">
-              <p>
-                Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the
-                blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics
-              </p>
-
-              <p>
-                Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the
-                blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics
-              </p>
-            </div>
-
-            <button className="px-8 py-3 bg-[#3431de] text-white rounded-md hover:bg-[#2825b3] transition-colors">
-              Read About Us
-            </button>
-          </div>
-
-          <div className="grid grid-cols-2 gap-6 max-w-xl mx-auto ">
-          {/* mt-12 */}
-      {stats.map((stat, index) => (
-        <div
-          key={index}
-          className={`bg-indigo-100 p-6 ${stat.rounded} flex flex-col justify-center items-center`}
-        >
-          <div className="text-3xl font-bold text-indigo-700">{stat.number}</div>
-          <div className="text-sm text-indigo-700 mt-2">{stat.label}</div>
-        </div>
-      ))}
-    </div>
-        </div>
-      </section>
-
-      {/* Our Services Section */}
-      <section className="container mx-auto px-4 py-20">
-        <div className="text-center space-y-4 mb-16">
-          <span className="text-[#2f29d9] font-semibold text-lg">Our Services</span>
-          <h2 className="text-[#0b1030] text-4xl md:text-5xl font-bold">What We Offer</h2>
-        </div>
-
-        <div data-aos="flip-left"></div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto mt-12 px-4">
-      {features.map((feature, idx) => (
-        <div
-          key={idx}
-          className={`relative p-8 rounded-xl overflow-hidden ${feature.bg}`}
-        >
-          <div data-aos="flip-left"
-     data-aos-easing="ease-out-cubic"
-     data-aos-duration="2000">
-
-          <div className="flex justify-center mb-4">
-            {feature.icon}
-          </div>
-          </div>
-          <p className="text-sm font-medium text-center mb-2  ">{feature.number}</p>
-          <h3 className="text-xl font-semibold text-center mb-2">{feature.title}</h3>
-          <p className="text-sm text-center opacity-80">{feature.desc}</p>
-
-          {/* Decorative semi-transparent circle */}
-          <div className="absolute bottom-0 left-0 w-64 h-32 bg-white opacity-10 rounded-full transform translate-x-1/4 translate-y-1/2 pointer-events-none" />
-        </div>
-      ))}
-    </div>
-      </section>
-
-      <div className="min-h-screen bg-[#3431de]">
-      {/* Key Features Section */}
-      <section className="container mx-auto px-4 py-24 relative ">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div className="space-y-6 max-w-xl">
-            <span className="text-[#B4B4FF] font-semibold text-lg">Key Features</span>
-            <h2 className="text-white text-4xl md:text-5xl font-bold leading-tight">
-              Manage Your Finances From one Place
-            </h2>
-            <div className="space-y-4">
-              <p className="text-white/80 text-lg">
-                Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the
-                blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics
-              </p>
-              <p className="text-white/80 text-lg">
-                Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the
-                blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics
-              </p>
-            </div>
-            <button className="px-8 py-3 bg-[#14144B] text-white rounded-md hover:bg-[#1E1E6B] transition-colors">
-              Check All Futures
-            </button>
-          </div>
-
-          <div className="relative">
-            <div className="aspect-square rounded-full overflow-hidden">
-              {/* <Image
-                src={`${process.env.NEXT_PUBLIC_BLOB_URL}/mlmZj.png`}
-                alt="Person reviewing financial documents"
-                width={600}
-                height={600}
-                className="w-full h-full object-cover"
-              /> */}
-              <img src={Make}   alt="Person reviewing financial documents" width={380} height={600} className="w-30 h-700 object-cover" />
-            </div>
-            {/* Decorative Dots Pattern */}
-            {/* <div className="absolute -top-12 -right-12 grid grid-cols-6 gap-2">
-              {[...Array(36)].map((_, i) => (
-                <div key={i} className="w-1.5 h-1.5 bg-white/20 rounded-full" />
-              ))}
-            </div> */}
-          </div>
-        </div>
-      </section>
-      </div>
-
-      {/* Start Now Section */}
-      <section className="container mx-auto px-4 py-24">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Left side - Feature Cards */}
-          <div className="grid grid-cols-2 gap-6 max-w-2xl">
-            {/* Innovative Solutions Card */}
-            <div className="bg-white rounded-3xl p-20 shadow-lg text-center">
-              <div className="mx-auto w-16 h-16 bg-[#4646FF] rounded-full flex items-center justify-center mb-4">
-                <svg
-                  className="w-8 h-8 text-white"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                >
-                  <rect x="2" y="3" width="20" height="14" rx="2" />
-                  <path d="M8 21h8" />
-                  <path d="M12 17v4" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold text-[#14144B]">Innovative Solutions</h3>
-            </div>
-
-            {/* Professional Team Card - Offset */}
-            <div className="bg-white rounded-3xl p-20 shadow-lg text-center">
-              <div className="mx-auto w-16 h-16 bg-[#4646FF] rounded-full flex items-center justify-center mb-4">
-                <svg
-                  className="w-8 h-8 text-white"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                >
-                  <path d="M17 7.83c.85-.37 1.79.18 1.79 1.17v8c0 1-.94 1.54-1.79 1.17l-14-6a1 1 0 0 1 0-1.8l14-6" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold text-[#14144B]">Professional Team</h3>
-            </div>
-
-            {/* 24/7 Support Card */}
-            <div className="bg-white rounded-3xl p-20 shadow-lg text-center col-span-2 max-w-xs ">
-              <div className="mx-auto w-16 h-16 bg-[#4646FF] rounded-full flex items-center justify-center mb-4">
-                <svg
-                  className="w-8 h-8 text-white"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                >
-                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold text-[#14144B]">24/7 Support</h3>
-            </div>
-          </div>
-
-          {/* Right side - Content */}
-          <div className="space-y-6">
-            <span className="text-[#3029D9] font-semibold text-lg">Start Now</span>
-            <h2 className="text-[#0B1131] text-4xl md:text-5xl font-bold leading-tight">
-              Start Now & Make <br /> Your Finances <br /> Clear & Organized
-            </h2>
-            <div className="space-y-4">
-              <p className="text-[#c9cfd6]/80 text-lg">
-                Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the
-                blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics
-              </p>
-              <p className="text-[#c9cfd6]/80 text-lg">
-                Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the
-                blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics
-              </p>
-            </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Latest News Section */}
-      <section className="container mx-auto px-4 py-24">
-        <div className="text-center space-y-4 mb-16">
-          <span className="text-[#3029D9] font-semibold text-lg">Our Services</span>
-          <h2 className="text-[#0B1131] text-4xl md:text-5xl font-bold">Latest News</h2>
+      {/* Skills Section */}
+      <section id="skills" className="py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-16">
+            <div className="text-5xl mb-4">🧠</div>
+            <h2 className="text-4xl font-bold text-white mb-6">Skills</h2>
+            <div className="w-20 h-1 bg-gradient-to-r from-purple-400 to-pink-400 mx-auto rounded-full"></div>
+          </div>
+          
+          <div className="grid md:grid-cols-3 gap-8">
+            {Object.entries(skills).map(([category, skillList], index) => (
+              <div key={category} className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-purple-400/50 transition-all duration-500">
+                <h3 className="text-xl font-bold text-white mb-4 capitalize flex items-center gap-2">
+                  {category === 'frontend' && <Code size={20} className="text-purple-400" />}
+                  {category === 'backend' && <Database size={20} className="text-pink-400" />}
+                  {category === 'tools' && <Wrench size={20} className="text-blue-400" />}
+                  {category}
+                </h3>
+                <div className="flex flex-wrap gap-2">
+                  {skillList.map((skill, i) => (
+                    <span key={i} className="px-3 py-2 bg-white/10 text-white/80 rounded-lg text-sm hover:bg-white/20 transition-colors cursor-default">
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
+      </section>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {/* Blog Post 1 */}
-          <div data-aos="fade-down"
-     data-aos-easing="linear"
-     data-aos-duration="1500">
-
-          <div className="bg-white rounded-3xl overflow-hidden shadow-lg">
-            <div className="aspect-[4/3] relative">
-             
-              <img src= {Group}  alt="Email marketing team" width={600} height={450} className="object-cover w-full h-full" />
-            </div>
-            <div className="p-8 space-y-4">
-              <time className="text-[#3029D9] font-semibold">January 01, 2021</time>
-              <h3 className="text-2xl font-bold text-[#0B1131]">How to Start a Successful in 2020</h3>
-              <p className="text-gray-600 text-[#c9cfd6]">
-                Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.
-              </p>
-              <button className="px-6 py-2 bg-[#4646FF] text-white rounded-md hover:bg-[#3837CC] transition-colors">
-                Read More
-              </button>
-            </div>
+      {/* Contact Section */}
+      <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-16">
+            <div className="text-5xl mb-4">📫</div>
+            <h2 className="text-4xl font-bold text-white mb-6">Contact Me</h2>
+            <div className="w-20 h-1 bg-gradient-to-r from-purple-400 to-pink-400 mx-auto rounded-full"></div>
           </div>
-          </div>
-
-          {/* Blog Post 2 */}
-          <div data-aos="fade-up"
-     data-aos-duration="1500">
-
-          <div className="bg-white rounded-3xl overflow-hidden shadow-lg">
-            <div className="aspect-[4/3] relative">
-              <img src= {Group1}  alt="Email marketing team" width={600} height={500} className="object-cover w-full h-full" />
-            </div>
-            <div className="p-8 space-y-4">
-              <time className="text-[#3029D9] font-semibold">January 01, 2021</time>
-              <h3 className="text-2xl font-bold text-[#0B1131]">Grow Your Business with Email Marketing</h3>
-              <p className="text-gray-600 text-[#c9cfd6]">
-                Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.
-              </p>
-              <button className="px-6 py-2 bg-[#4646FF] text-white rounded-md hover:bg-[#3837CC] transition-colors">
-                Read More
-              </button>
-            </div>
-          </div>
-          </div>
-
-          {/* Blog Post 3 */}
-          <div data-aos="fade-right"
-    //  data-aos-offset="300"
-    data-aos-duration="1500"
-     data-aos-easing="ease-in-sine">
-
-          <div className="bg-white rounded-3xl overflow-hidden shadow-lg">
-            <div className="aspect-[4/3] relative">
+          
+          <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 text-center">
+            <p className="text-xl text-white/80 mb-8">
+              Let's build something amazing together!
+            </p>
             
-              <img src= {Group2}  alt="Email marketing team" width={600} height={450} className="object-cover w-full h-full" />
-            </div>
-            <div className="p-8 space-y-4">
-              <time className="text-[#3029D9] font-semibold">January 01, 2021</time>
-              <h3 className="text-2xl font-bold text-[#0B1131]">The 4 Pillars Every Online Business</h3>
-              <p className="text-gray-600 text-[#c9cfd6]">
-                Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.
-              </p>
-              <button className="px-6 py-2 bg-[#4646FF] text-white rounded-md hover:bg-[#3837CC] transition-colors">
-                Read More
-              </button>
-            </div>
-          </div>
-        </div>
-        </div>
-      </section>
-
-      
-          <div className="min-h-screen">
-      {/* Our Firm Section */}
-      <section className="container mx-auto px-5 py-24">
-        <div className="mb-8">
-          <h2 className="text-[#3431de] text-xl font-semibold">Our Firm</h2>
-        </div>
-
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div className="space-y-8">
-            <h3 className="text-[#0F172A] text-4xl md:text-5xl font-bold leading-tight">
-              We are Agile. Constantly Focused on Growth and Being Better
-            </h3>
-
-            <div className="space-y-6 text-gray-500">
-              <p>
-                Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the
-                blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics
-              </p>
-
-              <p>
-                Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the
-                blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics
-              </p>
-            </div>
-
-            <button className="px-8 py-3 bg-[#3431de] text-white rounded-md hover:bg-[#2825b3] transition-colors">
-              Read About Us
-            </button>
-          </div>
-
-          <div className="grid grid-cols-2 gap-6">
-            <div className="bg-[#e6e6ff] rounded-3xl p-8 flex flex-col justify-center items-center text-center">
-              <h4 className="text-[#3431de] text-5xl font-bold">18</h4>
-              <p className="text-[#3431de] font-medium">Years Experience</p>
-            </div>
-
-            <div className="bg-[#e6e6ff] rounded-3xl p-8 flex flex-col justify-center items-center text-center">
-              <h4 className="text-[#3431de] text-5xl font-bold">240+</h4>
-              <p className="text-[#3431de] font-medium">Completed Projects</p>
-            </div>
-
-            <div className="bg-[#e6e6ff] rounded-3xl p-8 flex flex-col justify-center items-center text-center">
-              <h4 className="text-[#3431de] text-5xl font-bold">9.5/10</h4>
-              <p className="text-[#3431de] font-medium">Average rating</p>
-            </div>
-
-            <div className="bg-[#e6e6ff] rounded-3xl p-8 flex flex-col justify-center items-center text-center">
-              <h4 className="text-[#3431de] text-5xl font-bold">150+</h4>
-              <p className="text-[#3431de] font-medium">Served</p>
+            <div className="grid md:grid-cols-3 gap-6">
+              <a href="mailto:yourname@example.com" className="group flex items-center justify-center gap-3 p-4 bg-white/5 rounded-xl hover:bg-white/10 transition-all duration-300">
+                <Mail size={24} className="text-purple-400 group-hover:scale-110 transition-transform" />
+                <div className="text-left">
+                  <div className="text-white font-semibold">Email</div>
+                  <div className="text-white/60 text-sm">alabigbenga467@gmail.com</div>
+                </div>
+              </a>
+              
+              <a href="https://linkedin.com/in/yourprofile" className="group flex items-center justify-center gap-3 p-4 bg-white/5 rounded-xl hover:bg-white/10 transition-all duration-300">
+                <Linkedin size={24} className="text-blue-400 group-hover:scale-110 transition-transform" />
+                <div className="text-left">
+                  <div className="text-white font-semibold">LinkedIn</div>
+                  <div className="text-white/60 text-sm">Connect with me</div>
+                </div>
+              </a>
+              
+              <a href="https://github.com/yourusername" className="group flex items-center justify-center gap-3 p-4 bg-white/5 rounded-xl hover:bg-white/10 transition-all duration-300">
+                <Github size={24} className="text-pink-400 group-hover:scale-110 transition-transform" />
+                <div className="text-left">
+                  <div className="text-white font-semibold">GitHub</div>
+                  <div className="text-white/60 text-sm">View my code</div>
+                </div>
+              </a>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* Our Services Section */}
-      <section className="container mx-auto px-5 py-24 bg-gray-50">
-        <div className="text-center mb-16">
-          <h2 className="text-[#3431de] text-xl font-semibold mb-4">Our Services</h2>
-          <h3 className="text-[#0F172A] text-4xl md:text-5xl font-bold">What We Offer</h3>
-        </div>
-
-        <div className="grid md:grid-cols-3 gap-8">
-          {/* Service Card 1 */}
-          <div data-aos="fade-left"
-     data-aos-anchor="#example-anchor"
-     data-aos-offset="500"
-     data-aos-duration="1500">
-
-          <div className="rounded-2xl overflow-hidden bg-white shadow-lg">
-            <div className="p-12 flex flex-col items-center justify-center">
-              <div className="mb-8">
-                <Wallet className="w-16 h-16 text-[#3431de]" />
-              </div>
-              <div className="text-center">
-                <p className="text-gray-400 mb-4">#1</p>
-                <h4 className="text-2xl font-bold mb-6">Financial Report</h4>
-                <p className="text-gray-500">
-                  Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.
-                </p>
-              </div>
-            </div>
-            <div className="h-24 bg-[#e6e6ff] rounded-tl-[100px]"></div>
-          </div>
-          </div>
-
-          {/* Service Card 2 */}
-          <div className="rounded-2xl overflow-hidden bg-[#3431de] shadow-lg text-white">
-            <div className="p-12 flex flex-col items-center justify-center">
-              <div className="mb-8">
-                <Briefcase className="w-16 h-16 text-white" />
-              </div>
-              <div className="text-center">
-                <p className="text-white/70 mb-4">#2</p>
-                <h4 className="text-2xl font-bold mb-6">Manage Investments</h4>
-                <p className="text-white/80">
-                  Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.
-                </p>
-              </div>
-            </div>
-            <div className="h-24 bg-[#2825b3] rounded-tl-[100px]"></div>
-          </div>
-
-          {/* Service Card 3 */}
-          <div className="rounded-2xl overflow-hidden bg-[#0F172A] shadow-lg text-white">
-            <div className="p-12 flex flex-col items-center justify-center">
-              <div className="mb-8">
-                <BarChart3 className="w-16 h-16 text-white" />
-              </div>
-              <div className="text-center">
-                <p className="text-white/70 mb-4">#3</p>
-                <h4 className="text-2xl font-bold mb-6">Financial Report</h4>
-                <p className="text-white/80">
-                  Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.
-                </p>
-              </div>
-            </div>
-            <div className="h-24 bg-[#1E293B] rounded-tl-[100px]"></div>
-          </div>
-        </div>
-      </section>
-      {/* Added Section */}
-      <section className="bg-[#14144B] py-32 relative overflow-hidden">
-        <div className="container mx-auto px-4 text-center space-y-6">
-          <span className="text-[#4646FF] font-semibold text-lg">Contact With Us</span>
-          <div className="space-y-4">
-            <h2 className="text-white text-5xl md:text-6xl font-bold">Interested?</h2>
-            <p className="text-white text-4xl md:text-5xl font-bold">Let's Start a Projects Together</p>
-          </div>
-          <div className="pt-8">
-            <button className="px-8 py-3 bg-[#4646FF] text-white rounded-md hover:bg-[#3837CC] transition-colors">
-              Contact Us
-            </button>
-          </div>
-        </div>
-
-        {/* Decorative Wave */}
-        <div className="absolute bottom-0 left-0 w-full">
-          <svg
-            viewBox="0 0 1440 120"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            className="w-full h-auto"
-            preserveAspectRatio="none"
-          >
-            <path
-              d="M0 0L60 10C120 20 240 40 360 46.7C480 53 600 47 720 42.3C840 37 960 33 1080 35.3C1200 37 1320 45 1380 49.3L1440 53.3V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0V0Z"
-              fill="#3837CC"
-              fillOpacity="0.1"
-            />
-          </svg>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-white py-16 border-t border-gray-100">
-        <div className="container mx-auto px-5">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
-            {/* Logo and Description */}
-            <div className="space-y-6">
-              <div className="flex items-center gap-2">
-                <div className="w-10 h-10 bg-[#3431de]/20 rounded-full flex items-center justify-center">
-                  <span className="text-[#3431de] font-bold">W</span>
-                </div>
-                <span className="text-[#3431de] text-xl font-bold">WeFinance</span>
-              </div>
-              <p className="text-gray-500 max-w-xs">WeFinance is the highest rated expert team in the world</p>
-              <p className="text-gray-400 text-sm">©2021 WeFinance</p>
-            </div>
-
-            {/* Navigation Links - First Column */}
-            <div>
-              <ul className="space-y-4">
-                <li>
-                  <a href="/" className="text-gray-700 hover:text-[#3431de] transition-colors">
-                    Home
-                  </a>
-                </li>
-                <li>
-                  <a href="/about" className="text-gray-700 hover:text-[#3431de] transition-colors">
-                    About Us
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="text-gray-700 hover:text-[#3431de] transition-colors">
-                    How it Works
-                  </a>
-                </li>
-              </ul>
-            </div>
-
-            {/* Navigation Links - Second Column */}
-            <div>
-              <ul className="space-y-4">
-                <li>
-                  <a href="#" className="text-gray-700 hover:text-[#3431de] transition-colors">
-                    Our Services
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="text-gray-700 hover:text-[#3431de] transition-colors">
-                    Contact Us
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="text-gray-700 hover:text-[#3431de] transition-colors">
-                    FAQ
-                  </a>
-                </li>
-              </ul>
-            </div>
-
-            {/* Navigation Links - Third Column and Social Media */}
-            <div className="space-y-8">
-              <ul className="space-y-4">
-                <li>
-                  <a href="#" className="text-gray-700 hover:text-[#3431de] transition-colors">
-                    Our Team
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="text-gray-700 hover:text-[#3431de] transition-colors">
-                    Careers
-                  </a>
-                </li>
-              </ul>
-
-              {/* Social Media Icons */}
-              <div className="flex items-center gap-4">
-                <a href="#" className="text-[#3431de] hover:text-[#2825b3] transition-colors">
-                  <Facebook className="w-5 h-5" />
-                </a>
-                <a href="#" className="text-[#3431de] hover:text-[#2825b3] transition-colors">
-                  <Instagram className="w-5 h-5" />
-                </a>
-                <a href="#" className="text-[#3431de] hover:text-[#2825b3] transition-colors">
-                  <Twitter className="w-5 h-5" />
-                </a>
-              </div>
-            </div>
-          </div>
-
-          {/* Bottom Links */}
-          <div className="flex flex-wrap justify-end mt-12 gap-8 text-sm">
-            <a href="#" className="text-gray-500 hover:text-[#3431de] transition-colors">
-              Help
-            </a>
-            <a href="#" className="text-gray-500 hover:text-[#3431de] transition-colors">
-              Term & Conditions
-            </a>
-            <a href="#" className="text-gray-500 hover:text-[#3431de] transition-colors">
-              Privacy
-            </a>
-          </div>
+      <footer className="py-8 px-4 sm:px-6 lg:px-8 border-t border-white/10">
+        <div className="max-w-4xl mx-auto text-center">
+          <p className="text-white/60">
+            © 2025 Gbenga. Built with React & Tailwind CSS.
+          </p>
         </div>
       </footer>
     </div>
-
-    </div>
-  )
+  );
 }
-
-export default Dashboard
